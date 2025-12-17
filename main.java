@@ -46,6 +46,9 @@ class main extends Program {
         } else if (choix == 2) {
             write("Salut !", 25);
         }
+        println(toMorse("Voici votre mission"));
+        println(toCesar("Voici votre mission"));
+        println(toVigenere("Voici votre mission"));
     }
 
     // les programmes suivant chiffrent les questions selon différentes méthodes
