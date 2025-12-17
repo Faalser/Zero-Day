@@ -113,7 +113,7 @@ class main extends Program {
     }
 
     // chiffrage par décalage de César
-    String cesar(String questions) {
+    String toCesar(String questions) {
         String res = "";
         int decalage = randomInt(1, 25);
         for (int i = 0; i < length(questions); i++) {
@@ -122,6 +122,30 @@ class main extends Program {
                 res = res + char(((c - 'A' + decalage) % 26) + 'A');
             } else if (c >= 'a' && c <= 'z') {
                 res = res + char(((c - 'a' + decalage) % 26) + 'a');
+            } else {
+                res = res + c;
+            }
+        }
+        return res;
+    }
+
+    // chiffrage via un mot
+    String toVigenere(String questions) {
+        String key = "vesperal";
+        String res = "";
+        int keyLength = length(key);
+        for (int i = 0, j = 0; i < length(questions); i++) {
+            char c = charAt(questions, i);
+            if (c >= 'A' && c <= 'Z') {
+                char k = charAt(key, j % keyLength);
+                int shift = (k >= 'A' && k <= 'Z') ? (k - 'A') : (k - 'a');
+                res = res + char(((c - 'A' + shift) % 26) + 'A');
+                j++;
+            } else if (c >= 'a' && c <= 'z') {
+                char k = charAt(key, j % keyLength);
+                int shift = (k >= 'A' && k <= 'Z') ? (k - 'A') : (k - 'a');
+                res = res + char(((c - 'a' + shift) % 26) + 'a');
+                j++;
             } else {
                 res = res + c;
             }
