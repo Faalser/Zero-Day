@@ -51,7 +51,7 @@ class main extends Program {
     // les programmes suivant chiffrent les questions selon différentes méthodes
 
     // chiffrage en morse
-    void toMorse(String questions) {
+    String toMorse(String questions) {
         String res = "";
         for (int i = 0; i < length(questions); i++) {
             char c = charAt(questions, i);
@@ -109,6 +109,23 @@ class main extends Program {
                 res = res + "--..";
             res = res + " ";
         }
+        return res;
     }
 
+    // chiffrage par décalage de César
+    String cesar(String questions) {
+        String res = "";
+        int decalage = randomInt(1, 25);
+        for (int i = 0; i < length(questions); i++) {
+            char c = charAt(questions, i);
+            if (c >= 'A' && c <= 'Z') {
+                res = res + char(((c - 'A' + decalage) % 26) + 'A');
+            } else if (c >= 'a' && c <= 'z') {
+                res = res + char(((c - 'a' + decalage) % 26) + 'a');
+            } else {
+                res = res + c;
+            }
+        }
+        return res;
+    }
 }
