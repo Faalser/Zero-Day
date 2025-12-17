@@ -132,7 +132,7 @@ class main extends Program {
         return res;
     }
 
-    // chiffrage via un mot
+    // chiffrage via un clé de type string
     String toVigenere(String questions) {
         String key = "vesperal";
         String res = "";
