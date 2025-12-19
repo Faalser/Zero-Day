@@ -35,7 +35,7 @@ class main extends Program {
 
     // les programmes suivant chiffrent les questions selon différentes méthodes
 
-    // chiffrage en morse
+    // chiffrage en morse sans réel algorithme
     String toMorse(String questions) {
         String res = "";
         for (int i = 0; i < length(questions); i++) {
