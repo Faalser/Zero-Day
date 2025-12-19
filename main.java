@@ -149,10 +149,20 @@ class main extends Program {
         return substring(currentLine, 3, length(currentLine));
     }
 
-    void verifierReponse(String reponseJoueur, String question) {
-        String intQuestion = substring(question, 0, 2);
+    boolean verifierReponse(String reponseJoueur, String question) {
+        String strQuestion = substring(question, 0, 2);
+        int numQuestion = stringToInt(strQuestion);
         File fichierReponses = newFile("./reponses.csv");
         String bonneReponse = "";
+        for (int i = 1; i <= numQuestion; i++) {
+            bonneReponse = readLine(fichierReponses);
+        }
+        bonneReponse = substring(bonneReponse, 3, length(bonneReponse));
+        if (reponseJoueur == bonneReponse) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     void algorithm() {
