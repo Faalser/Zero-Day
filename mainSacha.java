@@ -2,7 +2,7 @@ import extensions.File;
 
 class mainSacha extends Program {
 
-    String[] SAVES = getAllFilesFromDirectory("./saves");
+    final String[] SAVES = getAllFilesFromDirectory("./saves");
 
     void resetScreen() {
         println();
@@ -30,9 +30,7 @@ class mainSacha extends Program {
             print(charAt(text, i));
             sleep(ms);
         }
-
         sleep(duree);
-
         for (int i = length(text) - 1; i >= 0; i--) {
             print("\b");
             print(" ");
@@ -53,26 +51,12 @@ class mainSacha extends Program {
 
     String removeMaj(String text) {
         String result = "";
-
         for (int i = 0; i < length(text); i++) {
             char c = charAt(text, i);
-
             if (c >= 'A' && c <= 'Z') {
                 c = (char) (c + 32);
             }
-
             result = result + c;
-        }
-
-        return result;
-    }
-
-    boolean saveExist(String joueur) {
-        boolean result = false;
-        for (int i = 0; i < length(SAVES); i++) {
-            if (equals(SAVES[i],(joueur + ".txt"))) {
-                result = true;
-            }
         }
         return result;
     }
@@ -86,7 +70,31 @@ class mainSacha extends Program {
         return removeMaj(joueur);
     }
 
-    void newGame() {
+    boolean saveExist(String joueur) {
+        boolean result = false;
+        for (int i = 0; i < length(SAVES); i++) {
+            if (equals(SAVES[i],(joueur + ".txt"))) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    Player createPlayer(String joueur, int argent, int jour) {
+        Player player = new Player();
+        player.nom = joueur;
+        player.argent = argent;
+        player.jour = jour;
+        return player;
+    }
+
+/*
+    void initStats(String joueur) {
+        PAS DE METHODE QUI PERMET DE CREER OU D'ECRIRE DANS UN FICHIER EN IJAVA. MERCI.
+    }
+*/
+
+    void newGame(String joueur) {
         print("Nouvelle partie en cours...");
     }
 
@@ -107,12 +115,14 @@ class mainSacha extends Program {
                     write("Continuer ? [O/N] ", 25);
                     String supprSave = removeMaj(readString());
                     if (equals(supprSave, "o") || equals(supprSave, "oui")) {
-                        newGame();
+                        newGame(joueur);
+                        repeat = false;
                     } else {
                         repeat = true;
                     }
                 } else {
-                    newGame();
+                    newGame(joueur);
+                    repeat = false;
                 }
             } else if (equals(choix, "2")) {
                 if (saveExist(joueur)) {

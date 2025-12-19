@@ -1,5 +1,5 @@
 public class Player {
     String nom;
     int argent;
-    int nbJours;
+    int jour;
 }
