@@ -158,7 +158,7 @@ class main extends Program {
             bonneReponse = readLine(fichierReponses);
         }
         bonneReponse = substring(bonneReponse, 3, length(bonneReponse));
-        if (reponseJoueur == bonneReponse) {
+        if (equals(reponseJoueur, bonneReponse)) {
             return true;
         } else {
             return false;
