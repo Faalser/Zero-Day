@@ -139,14 +139,14 @@ class main extends Program {
         return res;
     }
 
-    void questionAleatoire() {
+    String questionAleatoire() {
         File fichierQuestions = newFile("./questions.csv");
         int rand = random(1, 30);
         String currentLine = "";
         for (int i = 1; i < rand; i++) {
             currentLine = readLine(fichierQuestions);
         }
-        println(currentLine);
+        return currentLine;
     }
 
     void algorithm() {
@@ -162,10 +162,9 @@ class main extends Program {
         } else if (choix == 2) {
             write("Salut !", 25);
         }*/
-        println(toMorse("Voici votre mission"));
-        println(toCesar("Voici votre mission"));
-        println(toVigenere("Voici votre mission"));
-        questionAleatoire();
+        println(toMorse(questionAleatoire()));
+        println(toCesar(questionAleatoire()));
+        println(toVigenere(questionAleatoire()));
     }
 
 }
