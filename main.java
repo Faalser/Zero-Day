@@ -139,8 +139,18 @@ class main extends Program {
         return res;
     }
 
+    void questionAleatoire() {
+        File fichierQuestions = newFile("./questions.csv");
+        int rand = random(1, 30);
+        String currentLine = "";
+        for (int i = 1; i < rand; i++) {
+            currentLine = readLine(fichierQuestions);
+        }
+        println(currentLine);
+    }
+
     void algorithm() {
-        resetScreen();
+        /*resetScreen();
         writeln("Qui êtes-vous ?", 25);
         print("Je suis ");
         String pseudoJoueur = readString();
@@ -151,10 +161,11 @@ class main extends Program {
             write("Bonjour, agent...", 25);
         } else if (choix == 2) {
             write("Salut !", 25);
-        }
+        }*/
         println(toMorse("Voici votre mission"));
         println(toCesar("Voici votre mission"));
         println(toVigenere("Voici votre mission"));
+        questionAleatoire();
     }
 
 }
