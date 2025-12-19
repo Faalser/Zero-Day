@@ -49,6 +49,16 @@ class mainSacha extends Program {
         println();
     }
 
+    void writeText(String path) {
+        File text = newFile(path);
+        while (ready(text)) {
+            write(readLine(text),25);
+            println();
+            sleep(25);
+        }
+        println();
+    }
+
     String removeMaj(String text) {
         String result = "";
         for (int i = 0; i < length(text); i++) {
@@ -88,14 +98,21 @@ class mainSacha extends Program {
         return player;
     }
 
+
+    void jour1() {
+        writeText("./dialogues/jour1-intro.txt");
+    }
+
 /*
     void initStats(String joueur) {
-        PAS DE METHODE QUI PERMET DE CREER OU D'ECRIRE DANS UN FICHIER EN IJAVA. MERCI.
+        PAS DE METHODE QUI PERMET DE CREER OU D'ECRIRE DANS UN FICHIER EN IJAVA.
     }
 */
 
     void newGame(String joueur) {
-        print("Nouvelle partie en cours...");
+        resetScreen();
+        Player player = createPlayer(joueur, 100, 1);
+        jour1();
     }
 
     void menuPrincipal(String joueur) {
