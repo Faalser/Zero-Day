@@ -33,24 +33,6 @@ class main extends Program {
         println();
     }
 
-    void algorithm() {
-        resetScreen();
-        writeln("Qui êtes-vous ?", 25);
-        print("Je suis ");
-        String pseudoJoueur = readString();
-        showText("./menus/logo.txt");
-        write("Sélectionnez une option : ", 25);
-        int choix = readInt();
-        if (choix == 1) {
-            write("Bonjour, agent...", 25);
-        } else if (choix == 2) {
-            write("Salut !", 25);
-        }
-        println(toMorse("Voici votre mission"));
-        println(toCesar("Voici votre mission"));
-        println(toVigenere("Voici votre mission"));
-    }
-
     // les programmes suivant chiffrent les questions selon différentes méthodes
 
     // chiffrage en morse
@@ -110,6 +92,7 @@ class main extends Program {
                 res = res + "-.--";
             } else if (c == 'Z' || c == 'z') {
                 res = res + "--..";
+            }
             res = res + " ";
         }
         return res;
@@ -118,13 +101,13 @@ class main extends Program {
     // chiffrage par décalage de César
     String toCesar(String questions) {
         String res = "";
-        int decalage = randomInt(1, 25);
+        int decalage = random(1, 25);
         for (int i = 0; i < length(questions); i++) {
             char c = charAt(questions, i);
             if (c >= 'A' && c <= 'Z') {
-                res = res + char(((c - 'A' + decalage) % 26) + 'A');
+                res = res + (char) ((c - 'A' + decalage) % 26 + 'A');
             } else if (c >= 'a' && c <= 'z') {
-                res = res + char(((c - 'a' + decalage) % 26) + 'a');
+                res = res + (char) ((c - 'a' + decalage) % 26 + 'a');
             } else {
                 res = res + c;
             }
@@ -142,12 +125,12 @@ class main extends Program {
             if (c >= 'A' && c <= 'Z') {
                 char k = charAt(key, j % keyLength);
                 int shift = (k >= 'A' && k <= 'Z') ? (k - 'A') : (k - 'a');
-                res = res + char(((c - 'A' + shift) % 26) + 'A');
+                res = res + (char) ((c - 'A' + shift) % 26 + 'A');
                 j++;
             } else if (c >= 'a' && c <= 'z') {
                 char k = charAt(key, j % keyLength);
                 int shift = (k >= 'A' && k <= 'Z') ? (k - 'A') : (k - 'a');
-                res = res + char(((c - 'a' + shift) % 26) + 'a');
+                res = res + (char) ((c - 'a' + shift) % 26 + 'a');
                 j++;
             } else {
                 res = res + c;
@@ -155,4 +138,23 @@ class main extends Program {
         }
         return res;
     }
+
+    void algorithm() {
+        resetScreen();
+        writeln("Qui êtes-vous ?", 25);
+        print("Je suis ");
+        String pseudoJoueur = readString();
+        showText("./menus/logo.txt");
+        write("Sélectionnez une option : ", 25);
+        int choix = readInt();
+        if (choix == 1) {
+            write("Bonjour, agent...", 25);
+        } else if (choix == 2) {
+            write("Salut !", 25);
+        }
+        println(toMorse("Voici votre mission"));
+        println(toCesar("Voici votre mission"));
+        println(toVigenere("Voici votre mission"));
+    }
+
 }
