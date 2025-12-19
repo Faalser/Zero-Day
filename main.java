@@ -146,7 +146,13 @@ class main extends Program {
         for (int i = 1; i < rand; i++) {
             currentLine = readLine(fichierQuestions);
         }
-        return currentLine;
+        return substring(currentLine, 3, length(currentLine));
+    }
+
+    void verifierReponse(String reponseJoueur, String question) {
+        String intQuestion = substring(question, 0, 2);
+        File fichierReponses = newFile("./reponses.csv");
+        String bonneReponse = "";
     }
 
     void algorithm() {
