@@ -93,40 +93,43 @@ class mainSacha extends Program {
     void menuPrincipal(String joueur) {
         resetScreen();
         showText("./ASCII/logo.txt");
-        int choix = 0;
-        boolean error = false;
+        String choix = "";
+        boolean repeat = false;
         do {
             write("Sélectionnez une option : ", 25);
-            choix = readInt();
-            if (choix >= 1 && choix <= 3) {
-                error = false;
+            choix = readString();
+            if (equals(choix, "1")) {
+                repeat = false;
+
+                if (saveExist(joueur)) {
+                    writeln("Vous êtes sur le point de supprimer votre ancienne sauvegarde.", 25);
+                    println();
+                    write("Continuer ? [O/N] ", 25);
+                    String supprSave = removeMaj(readString());
+                    if (equals(supprSave, "o") || equals(supprSave, "oui")) {
+                        newGame();
+                    } else {
+                        repeat = true;
+                    }
+                } else {
+                    newGame();
+                }
+            } else if (equals(choix, "2")) {
+                if (saveExist(joueur)) {
+                    print("En cours de développement...");
+                    repeat = false;
+                } else {
+                    writeln("Aucune sauvegarde n'a été trouvée pour le joueur " + joueur + "...", 25);
+                    repeat = true;
+                }
+            } else if (equals(choix, "3")) {
+                writeln("Nous nous reverrons...", 25);
+                repeat = false;
             } else {
                 writeln("Option invalide, vous devez saisir une valeur entre 1 et 3.", 25);
-                error = true;
+                repeat = true;
             }
-        } while (error);
-        if (choix == 1) {
-            if (saveExist(joueur)) {
-                writeln("Vous êtes sur le point de supprimer votre ancienne sauvegarde.", 25);
-                write("Continuer ? [O/N] ", 25);
-                String supprSave = removeMaj(readString());
-                if (equals(supprSave, "o") || equals(supprSave, "oui")) {
-                    newGame();
-                } else {
-                    menuPrincipal(joueur);
-                }
-            }
-        } else if (choix == 2) {
-            if (saveExist(joueur)) {
-                print("En cours de développement...");
-            } else {
-                writeln("Aucune sauvegarde n'a été trouvée pour le joueur " + joueur, 25);
-                menuPrincipal(joueur);
-            }
-        } else {
-            write("Nous nous reverrons...", 25);
-            resetScreen();
-        }
+        } while (repeat);
     }
 
     void algorithm() {
